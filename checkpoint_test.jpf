@@ -1,0 +1,28 @@
+@using jpf-symbc
+@using tplex
+
+target=CheckpointTest
+classpath=bin
+symbolic.method=CheckpointTest.symbBool(sym#con)
+
+vm.max_transition_length = MAX
+# The script should override this
+#search.depth_limit=4
+# It turns out that this is a thing. Important detail.
+#symbolic.choco_time_bound=MAX
+#symbolic.debug=on
+
+
+listener = edu.umn.crisys.spf.SymbolicSequenceListener
+search.class = edu.umn.crisys.spf.CheckpointSearch
+#listener = gov.nasa.jpf.symbc.SymbolicListener
+
+
+vm.max_transition_length = MAX
+vm.tree_output = false
+vm.path_output = true
+
+#report.class = gov.nasa.jpf.report.Reporter
+#report.publisher = console
+#report.console.class = gov.nasa.jpf.report.ConsolePublisher
+#report.console.property_violation = error,output
